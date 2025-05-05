@@ -1,29 +1,17 @@
-# progress
+# Progress
 
-**Current status and evolution**
+Update Timestamp: 2025-05-05 07:36 (Europe/Stockholm)
 
-This document tracks what works, what's left to build, known issues, and the evolution of project decisions.
+Completed:
+- Refactored the Dockerfile into a multi-stage build to leverage caching and speed up dependency resolution.
+- Resolved local theme issues by switching the Gemfile to pull awesome-jekyll-theme from RubyGems.
+- Updated documentation in configuration files (_config.yml, Gemfile, Dockerfile) to match the current setup.
 
-## What works
-- Jekyll site scaffold with default layouts
-- Awesome Jekyll Theme cloned and integrated
-- Dockerfile and docker-compose for containerized development
-- Local live reload via `docker-compose up`
-- Git repository initialized, committed, and pushed to GitHub
+In Progress:
+- Investigating long build times due to dependency resolution from RubyGems.
+- Evaluating strategies to vendor gem dependencies using Bundler’s packaging (e.g. running “bundle package --all”) and storing gems in the vendor/cache directory to speed up builds.
+- Testing alternative caching and build optimization techniques to avoid re-resolving dependencies on each build.
 
-## What's left to build
-- Optional CI/CD with GitHub Actions to build and publish Docker image
-- Deployment instructions for production (e.g., push to container registry, run on cloud provider)
-- Domain configuration steps (DNS, SSL)
-- Custom content pages beyond the default example
-
-## Current status
-Initial local development and remote GitHub integration complete.  
-
-## Known issues
-- None at this stage; container build and serve function as expected.
-
-## Evolution of project decisions
-- Decided to clone the theme locally (not remote gem) for full customization.
-- Opted for Docker-based Jekyll to avoid host gem install issues.
-- Chose manual GitHub repo creation due to absent `gh` CLI.
+Pending:
+- Finalize and implement the vendoring approach to ensure faster and more consistent Docker builds.
+- Monitor build performance and adjust caching settings as needed.
